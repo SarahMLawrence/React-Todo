@@ -1,13 +1,54 @@
-import React from 'react';
+import React from "react";
+import TodoList from "./components/TodoList";
+
+//==================================================//
+//  Why store data in state => so it can be changed //
+//==================================================//
+const todoItems = [
+  {
+    name: "Mop Floors",
+    id: 123,
+    completed: false,
+  },
+
+  {
+    name: "Take Out Trash",
+    id: 124,
+    completed: false,
+  },
+];
 
 class App extends React.Component {
-  // you will need a place to store your state in this component.
-  // design `App` to be the parent component of your application.
-  // this component is going to take care of state, and any change handlers you need to work with your state
+  //=========================//
+  //  Constructor with State //
+  //=========================//
+  constructor() {
+    //===================================================//
+    //  super: calls the constructor of the parent class //
+    //  (which is React.Component)                       //
+    //===================================================//
+    super();
+    //initialize the state
+    this.state = {
+      // WHAT IS THIS? => a keyword that points to the element its inside of
+      todoItems,
+    };
+  }
+
+  //================================//
+  //  Class method to update state  //
+  //================================//
+  toggleItem = (itemId) => {
+    console.log(itemId);
+  };
+
   render() {
     return (
-      <div>
-        <h2>Welcome to your Todo App!</h2>
+      <div className="App">
+        <div className="header">
+          <h2>Welcome to your Todo App!</h2>
+        </div>
+        <TodoList todoItems={this.state.todoItems} />
       </div>
     );
   }
