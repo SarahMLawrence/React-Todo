@@ -21,6 +21,18 @@ const todoItems = [
     id: 124,
     completed: false,
   },
+
+  {
+    name: "Wash Car",
+    id: 125,
+    completed: false,
+  },
+
+  {
+    name: "Mow The Lawn",
+    id: 126,
+    completed: false,
+  }
 ];
 
 class App extends React.Component {
