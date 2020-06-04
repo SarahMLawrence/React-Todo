@@ -1,0 +1,20 @@
+.item {
+  background-color: #7fdbff;
+  width: 45%;
+  text-align: left;
+  margin: 4px 0;
+  padding-left: 8px;
+  cursor: pointer;
+  font-family: monospace;
+}
+
+.item.completed {
+  background-color: #01ff70;
+  text-decoration: line-through;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

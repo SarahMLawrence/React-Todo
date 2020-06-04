@@ -1,5 +1,10 @@
+//===========//
+//  IMPORTS  //
+//===========//
 import React from "react";
 import TodoList from "./components/TodoList";
+import TodoForm from "./components/TodoForm";
+import "./App.css";
 
 //==================================================//
 //  Why store data in state => so it can be changed //
@@ -35,20 +40,64 @@ class App extends React.Component {
     };
   }
 
-  //================================//
-  //  Class method to update state  //
-  //================================//
   toggleItem = (itemId) => {
     console.log(itemId);
+    //===============================================================//
+    // map over array                                                 //
+    // when we find the item we clicked, toggle the completed field   //
+    // otherwise, return the item untouched                           //
+    //================================================================//
+    this.setState({
+      //=========================================//
+      //  pass in a new state object             //
+      //  pulling back previous state todoItems  //
+      //=========================================//
+      todoItems: this.state.todoItems.map((item) => {
+        if (itemId === item.id) {
+          return {
+            ...item,
+            completed: !item.completed,
+          };
+        }
+        return item;
+      }),
+    });
   };
+
+  clearCompleted = (e) => {
+    e.preventDefault();
+    //===============================================================//
+    // if item is completed (item.completed is true) then filter out //
+    //===============================================================//
+    this.setState({
+      todoItems: this.state.todoItems.filter((item) => !item.completed),
+    });
+  };
+
+  addItem = (e, item) => {
+    e.preventDefault();
+    const newItem = {
+      name: item,
+      id: Date.now(),
+      completed: false
+    };
+    this.setState({
+      todoItems: [...this.state.todoItems, newItem]
+    });
+  }
 
   render() {
     return (
       <div className="App">
         <div className="header">
           <h2>Welcome to your Todo App!</h2>
+          <TodoForm addItem={this.addItem}/>
         </div>
-        <TodoList todoItems={this.state.todoItems} />
+        <TodoList
+          toggleItem={this.toggleItem}
+          todoItems={this.state.todoItems}
+          clearCompleted={this.clearCompleted}
+        />
       </div>
     );
   }
