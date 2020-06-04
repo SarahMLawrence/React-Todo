@@ -34,10 +34,11 @@ submitItem = e => {
           type="text"
           value={this.state.item}
           name="item"
+          placeholder="Add Todo Item"
           onChange={this.handleChanges}
           autoComplete="off"
         />
-        <button> Add </button>
+        <button className="addBtn"> Add </button>
       </form>
     );
   }
